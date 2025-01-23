@@ -1,5 +1,4 @@
 import HeroIllustration from "@/assets/hero-ill";
-import Image from "next/image";
 
 export default function Home() {
   return (
