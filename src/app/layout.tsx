@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import "aos/dist/aos.css";
+import Navbar from "@/components/layout/navbar";
+import { AOSInit } from "@/components/shared/aos";
+import { Footer } from "@/components/layout/footer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -13,7 +17,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ProyLabs",
+  title: "Proylabs",
   description: "Building Worlds That Inspire, Uplift, and Transform.",
 };
 
@@ -24,10 +28,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <AOSInit />
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <div className="">
+          <Navbar />
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );
