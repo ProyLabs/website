@@ -95,7 +95,6 @@ function Hero() {
             trigger: "#what-we-do",
             start: "bottom 100%",
             scrub: true,
-            markers: true,
           },
         })
         .to(frame, {
