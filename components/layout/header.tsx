@@ -52,16 +52,38 @@ export default function Header() {
               {menuItems.map((item, i) => {
                 return (
                   <li key={i}>
-                    <Link
-                      href={item.link}
-                      className="px-4.25 py-2 rounded-lg bg-transparent hover:bg-background font-[calc(max(.75rem,min(calc(.75rem+.002*(100vw-27.5rem)),.875rem)))] inline-flex items-center transition-all duration-500 ease-in-out uppercase text-sm tracking-tight"
-                      aria-label={item.title}
-                      data-label={item.title}
-                      target="_self"
-                    >
-                      <span>{item.title}</span>
-                    </Link>
-                  </li>
+  {item.link.startsWith('#') ? (
+    <a
+      href={item.link}
+      className="px-4.25 py-2 rounded-lg bg-transparent hover:bg-background font-[calc(max(.75rem,min(calc(.75rem+.002*(100vw-27.5rem)),.875rem)))] inline-flex items-center transition-all duration-500 ease-in-out uppercase text-sm tracking-tight"
+      aria-label={item.title}
+      data-label={item.title}
+      target="_self"
+      onClick={e => {
+        e.preventDefault();
+        const target = document.querySelector(item.link);
+        if (target) {
+          window.scrollTo({
+            top: target.getBoundingClientRect().top + window.scrollY,
+            behavior: 'smooth',
+          });
+        }
+      }}
+    >
+      <span>{item.title}</span>
+    </a>
+  ) : (
+    <Link
+      href={item.link}
+      className="px-4.25 py-2 rounded-lg bg-transparent hover:bg-background font-[calc(max(.75rem,min(calc(.75rem+.002*(100vw-27.5rem)),.875rem)))] inline-flex items-center transition-all duration-500 ease-in-out uppercase text-sm tracking-tight"
+      aria-label={item.title}
+      data-label={item.title}
+      target="_self"
+    >
+      <span>{item.title}</span>
+    </Link>
+  )}
+</li>
                 );
               })}
             </ul>
